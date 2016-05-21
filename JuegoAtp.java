@@ -90,7 +90,7 @@ public class JuegoAtp {
   public String printSubTree() {
     String cadena = "";
     for (int i=0; i<listNodes.size(); i+=2) {
-      cadena += playerNames.get(i) + String.valueOf(listNodes.get(i).getCode()) + " vs Jugador " + String.valueOf(listNodes.get(i+1).getCode());
+      cadena += playerNames.get(i) + " vs " + String.valueOf(playerNames.get(i+1));
       cadena += " [" + String.valueOf(listNodes.get(i).getScore()) + " , " + String.valueOf(listNodes.get(i+1).getScore()) + "]\n";
     }
     return cadena;
@@ -145,6 +145,6 @@ public class JuegoAtp {
     }while(listNodes.size() >= 2);
 
     //en este momento la lista de control tiene el arbol binario construído de manera inversa
-    result += "GANA JUGADOR " + listNodes.get(0).getCode() + "!!!!";
+    result += "GANA " + playerNames.get(0) + "!!!!";
   }
 }
