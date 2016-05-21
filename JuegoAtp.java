@@ -47,7 +47,7 @@ public class JuegoAtp {
       int a = 0;
       while ((sCurrentLine = br.readLine()) != null) {
         
-        fuck.add(a, sCurrentLine.split("\\s+"));
+        fuck.add(sCurrentLine);
         System.out.println(fuck.get(a));
         a++;
       }
