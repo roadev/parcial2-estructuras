@@ -6,16 +6,22 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class JuegoAtp {
 
   private ArrayList<NodoAtp> listNodes;
+  private ArrayList<String> fuck;
   private NodoAtp tree; // Final Node Binary Tree
   private String result;
 
   public JuegoAtp () {
     listNodes = new ArrayList<NodoAtp>();
-    for(int i=1; i<129; i++) {
+    fuck = new ArrayList<String>();
+    readTxt();
+    for(int i=1; i<65; i++) {
       listNodes.add(new NodoAtp(i,0));
     }
 
@@ -27,6 +33,35 @@ public class JuegoAtp {
     Random rand = new Random();
     int randomNum = rand.nextInt((max - min) + 1) + min;
     return randomNum;
+  }
+
+  public void readTxt() {
+
+    BufferedReader br = null;
+
+    try {
+
+      String sCurrentLine;
+
+      br = new BufferedReader(new FileReader("fuck.txt"));
+      int a = 0;
+      while ((sCurrentLine = br.readLine()) != null) {
+        
+        fuck.add(a, sCurrentLine.split("\\s+"));
+        System.out.println(fuck.get(a));
+        a++;
+      }
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (br != null)br.close();
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
+    }
+
   }
 
   public void defineDad (NodoAtp foe1, NodoAtp foe2) {
@@ -76,7 +111,7 @@ public class JuegoAtp {
   }
 
   public void playGame() {
-    int i=7;
+    int i=6;
     String auxiliar="Ronda ";
     do {
       if (i==4)
