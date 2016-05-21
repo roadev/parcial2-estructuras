@@ -13,13 +13,13 @@ import java.io.IOException;
 public class JuegoAtp {
 
   private ArrayList<NodoAtp> listNodes;
-  private ArrayList<String> fuck;
+  private ArrayList<String> playerNames;
   private NodoAtp tree; // Final Node Binary Tree
   private String result;
 
   public JuegoAtp () {
     listNodes = new ArrayList<NodoAtp>();
-    fuck = new ArrayList<String>();
+    playerNames = new ArrayList<String>();
     readTxt();
     for(int i=1; i<65; i++) {
       listNodes.add(new NodoAtp(i,0));
@@ -43,12 +43,12 @@ public class JuegoAtp {
 
       String sCurrentLine;
 
-      br = new BufferedReader(new FileReader("fuck.txt"));
+      br = new BufferedReader(new FileReader("names.txt"));
       int a = 0;
       while ((sCurrentLine = br.readLine()) != null) {
         
-        fuck.add(sCurrentLine);
-        System.out.println(fuck.get(a));
+        playerNames.add(sCurrentLine);
+        System.out.println(playerNames.get(a));
         a++;
       }
 
@@ -90,7 +90,7 @@ public class JuegoAtp {
   public String printSubTree() {
     String cadena = "";
     for (int i=0; i<listNodes.size(); i+=2) {
-      cadena += " Jugador " + String.valueOf(listNodes.get(i).getCode()) + " vs Jugador " + String.valueOf(listNodes.get(i+1).getCode());
+      cadena += playerNames.get(i) + String.valueOf(listNodes.get(i).getCode()) + " vs Jugador " + String.valueOf(listNodes.get(i+1).getCode());
       cadena += " [" + String.valueOf(listNodes.get(i).getScore()) + " , " + String.valueOf(listNodes.get(i+1).getScore()) + "]\n";
     }
     return cadena;
