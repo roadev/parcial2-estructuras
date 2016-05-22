@@ -1,7 +1,9 @@
 /**
-*
-* @author Juan Roa
+* @author Diana Carolina Hernández
+* @version 1.0
+* @license 
 */
+
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,9 +14,9 @@ import java.io.IOException;
 
 public class JuegoAtp {
 
-  private ArrayList<NodoAtp> listNodes;
+  private ArrayList<NodoAtp> listNodes; //Building Binary Tree level by level
   private ArrayList<String> playerNames;
-  private NodoAtp tree; // Final Node Binary Tree
+  private NodoAtp tree;
   private String result;
 
   public JuegoAtp () {
@@ -25,8 +27,8 @@ public class JuegoAtp {
       listNodes.add(new NodoAtp(i,0));
     }
 
-    tree = new NodoAtp (0,0);
     result="";
+    tree = new NodoAtp(0,0);
   }
 
   public static int randInt(int min, int max) {
@@ -65,8 +67,8 @@ public class JuegoAtp {
   }
 
   public void defineDad (NodoAtp foe1, NodoAtp foe2) {
-    foe1.setFoe(foe2);
-    foe2.setFoe(foe1);
+    //foe1.setFoe(foe2);
+    //foe2.setFoe(foe1);
     int sets1 = randInt(3,8);
     int sets2 = 0;
     do {
@@ -75,16 +77,21 @@ public class JuegoAtp {
     foe1.setScore(sets1);
     foe2.setScore(sets2);
 
-    NodoAtp winner = new NodoAtp(0,0);
+    //NodoAtp winner = new NodoAtp(0,0); //winner sería la nueva raíz
+    tree = new NodoAtp(0,0);
 
     if(foe1.getScore()< foe2.getScore()){
-      winner.setCode(foe2.getCode());
+      //winner.setCode(foe2.getCode());
+      tree.setCode(foe2.getCode());
     } else if (foe2.getScore()< foe1.getScore()) {
-      winner.setCode(foe1.getCode());
+      //winner.setCode(foe1.getCode());
+      tree.setCode(foe1.getCode());
     }
 
-    foe1.setWinner(winner);
-    foe2.setWinner(winner);
+    //foe1.setWinner(winner);
+    //foe2.setWinner(winner);
+    tree.setIzq(foe1);
+    tree.setDer(foe2);
   }
 
   public String printSubTree() {

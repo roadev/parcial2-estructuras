@@ -1,7 +1,9 @@
 /**
-*
-* @author Juan Roa
+* @author Diana Carolina Hernández
+* @version 1.0
+* @license 
 */
+
 import javax.swing.*;
 
 public class Principal extends JFrame {
