@@ -4,10 +4,10 @@
 * @license 
 */
 
-import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.lang.Math;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,12 +18,14 @@ public class JuegoAtp {
   private ArrayList<String> playerNames;
   private NodoAtp tree;
   private String result;
+  private int numPlayers; //Opcional Auxiliar Attribute
 
   public JuegoAtp () {
     listNodes = new ArrayList<NodoAtp>();
     playerNames = new ArrayList<String>();
     readTxt();
-    for(int i=1; i<65; i++) {
+    numPlayers = 64;
+    for(int i=1; i<(numPlayers+1); i++) {
       listNodes.add(new NodoAtp(i,0));
     }
 
@@ -50,7 +52,7 @@ public class JuegoAtp {
       while ((sCurrentLine = br.readLine()) != null) {
         
         playerNames.add(sCurrentLine);
-        System.out.println(playerNames.get(a));
+        //System.out.println(playerNames.get(a));
         a++;
       }
 
@@ -83,15 +85,17 @@ public class JuegoAtp {
     if(foe1.getScore()< foe2.getScore()){
       //winner.setCode(foe2.getCode());
       tree.setCode(foe2.getCode());
+      tree.setDer(foe2);
+      tree.setIzq(foe1);
     } else if (foe2.getScore()< foe1.getScore()) {
       //winner.setCode(foe1.getCode());
       tree.setCode(foe1.getCode());
+      tree.setDer(foe1);
+      tree.setIzq(foe2);
     }
 
     //foe1.setWinner(winner);
     //foe2.setWinner(winner);
-    tree.setIzq(foe1);
-    tree.setDer(foe2);
   }
 
   public String printSubTree() {
@@ -120,7 +124,8 @@ public class JuegoAtp {
   }
 
   public void playGame() {
-    int i=6;
+    int i = (int)( (Math.log(numPlayers))/(Math.log(2)) );
+    System.out.println("\nNumber of Rounds = "+i);
     String auxiliar="Ronda ";
     do {
       if (i==4)
@@ -133,6 +138,7 @@ public class JuegoAtp {
         auxiliar = "Final";
 
       System.out.println("Ronda " + i + ", size " +listNodes.size());
+      Collections.shuffle(listNodes);
       roundPlay();
       if(i>4)
         result += auxiliar + i + "\n";
