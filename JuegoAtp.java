@@ -1,7 +1,7 @@
 /**
 * @author Diana Carolina Hernández
 * @version 1.0
-* @license 
+* @license MIT License
 */
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class JuegoAtp {
       br = new BufferedReader(new FileReader("names.txt"));
       int a = 0;
       while ((sCurrentLine = br.readLine()) != null) {
-        
+
         playerNames.add(sCurrentLine);
         //System.out.println(playerNames.get(a));
         a++;

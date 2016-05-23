@@ -1,7 +1,7 @@
 /**
 * @author Diana Carolina Hernández
 * @version 1.0
-* @license 
+* @license MIT License
 */
 
 import javax.swing.*;
