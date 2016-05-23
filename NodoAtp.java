@@ -1,5 +1,5 @@
 /**
-* @author Diana Carolina Hernández
+* @author Juan Roa
 * @version 1.0
 * @license MIT License
 */
