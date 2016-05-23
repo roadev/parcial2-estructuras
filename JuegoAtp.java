@@ -20,16 +20,17 @@ public class JuegoAtp {
   private String result;
   private int numPlayers; //Opcional Auxiliar Attribute
 
-  public JuegoAtp () {
+  public JuegoAtp() {
     listNodes = new ArrayList<NodoAtp>();
     playerNames = new ArrayList<String>();
     readTxt();
     numPlayers = 64;
-    for(int i=1; i<(numPlayers+1); i++) {
-      listNodes.add(new NodoAtp(i,0));
+
+    for(int i = 1; i < (numPlayers+1); i++) {
+      listNodes.add(new NodoAtp(i, 0));
     }
 
-    result="";
+    result = "";
     tree = new NodoAtp(0,0);
   }
 
@@ -48,12 +49,9 @@ public class JuegoAtp {
       String sCurrentLine;
 
       br = new BufferedReader(new FileReader("names.txt"));
-      int a = 0;
       while ((sCurrentLine = br.readLine()) != null) {
 
         playerNames.add(sCurrentLine);
-        //System.out.println(playerNames.get(a));
-        a++;
       }
 
     } catch (IOException e) {
@@ -80,14 +78,14 @@ public class JuegoAtp {
     foe2.setScore(sets2);
 
     //NodoAtp winner = new NodoAtp(0,0); //winner sería la nueva raíz
-    tree = new NodoAtp(0,0);
+    tree = new NodoAtp(0, 0);
 
-    if(foe1.getScore()< foe2.getScore()){
+    if(foe1.getScore() < foe2.getScore()){
       //winner.setCode(foe2.getCode());
       tree.setCode(foe2.getCode());
       tree.setDer(foe2);
       tree.setIzq(foe1);
-    } else if (foe2.getScore()< foe1.getScore()) {
+    } else if (foe2.getScore() < foe1.getScore()) {
       //winner.setCode(foe1.getCode());
       tree.setCode(foe1.getCode());
       tree.setDer(foe1);
@@ -100,7 +98,7 @@ public class JuegoAtp {
 
   public String printSubTree() {
     String cadena = "";
-    for (int i=0; i<listNodes.size(); i+=2) {
+    for (int i = 0; i < listNodes.size(); i += 2) {
       //cadena += " Jugador " + String.valueOf(listNodes.get(i).getCode()) + " vs Jugador " + String.valueOf(listNodes.get(i+1).getCode());
       //cadena += " [" + String.valueOf(listNodes.get(i).getScore()) + " , " + String.valueOf(listNodes.get(i+1).getScore()) + "]\n";
       cadena += playerNames.get(listNodes.get(i).getCode()) + " vs " + String.valueOf(playerNames.get(listNodes.get(i+1).getCode()));
@@ -111,36 +109,36 @@ public class JuegoAtp {
 
   public String getResult() {
     String copyresult = result;
-    result="";
+    result = "";
     return copyresult;
   }
 
   //hace crecer los arboles binarios parciales* con los ganadores de la respectiva ronda
   private void roundPlay () {
     int limit = listNodes.size() - 2;
-    for (int i=0; i<=limit; i+=2) {
-      defineDad(listNodes.get(i), listNodes.get(i+1));
+    for (int i = 0; i <= limit; i += 2) {
+      defineDad(listNodes.get(i), listNodes.get(i + 1));
     }
   }
 
   public void playGame() {
     int i = (int)( (Math.log(numPlayers))/(Math.log(2)) );
-    System.out.println("\nNumber of Rounds = "+i);
-    String auxiliar="Ronda ";
+    System.out.println("\nNumber of Rounds = " + i);
+    String auxiliar = "Ronda ";
     do {
-      if (i==4)
+      if (i == 4)
         auxiliar = "Octavos de Final";
-      else if (i==3)
+      else if (i == 3)
         auxiliar = "Cuartos de Final";
-      else if (i==2)
+      else if (i == 2)
         auxiliar = "Semifinal";
-      else if (i==1)
+      else if (i == 1)
         auxiliar = "Final";
 
-      System.out.println("Ronda " + i + ", size " +listNodes.size());
-      Collections.shuffle(listNodes);
+      System.out.println("Ronda " + i + ", size " + listNodes.size());
+      //Collections.shuffle(listNodes);
       roundPlay();
-      if(i>4)
+      if(i > 4)
         result += auxiliar + i + "\n";
       else
         result += auxiliar + "\n";
@@ -148,9 +146,9 @@ public class JuegoAtp {
       result += printSubTree();
       int j=0;
       //eliminando de la lista de control los perdedores de la respectiva ronda
-      while (j <= (listNodes.size()-2)) {
-        if ( listNodes.get(j).getScore() > listNodes.get(j+1).getScore() )
-          listNodes.remove(j+1);
+      while (j <= (listNodes.size() - 2)) {
+        if ( listNodes.get(j).getScore() > listNodes.get(j + 1).getScore() )
+          listNodes.remove(j + 1);
         else
           listNodes.remove(j);
         j++;

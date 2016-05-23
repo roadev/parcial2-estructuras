@@ -22,7 +22,7 @@ public class VistaAtp extends JFrame implements ActionListener{
 
     graphics();
     organize();
-    this.setSize(400,400);
+    this.setSize(400, 400);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setVisible(true);
   }
@@ -31,7 +31,7 @@ public class VistaAtp extends JFrame implements ActionListener{
     buttonInit = new JButton("Iniciar Torneo");
     buttonInit.addActionListener(this);
 
-    areaResultados = new JTextArea(20,30);
+    areaResultados = new JTextArea(20, 30);
     areaResultados.setEditable(false);
 
     scroll = new JScrollPane();
@@ -56,7 +56,7 @@ public class VistaAtp extends JFrame implements ActionListener{
   }
 
   public void actionPerformed(ActionEvent e) {
-    if(e.getSource()==buttonInit){
+    if(e.getSource() == buttonInit){
       game.playGame();
       areaResultados.setText(game.getResult());
       game = new JuegoAtp ();

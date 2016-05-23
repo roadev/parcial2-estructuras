@@ -31,11 +31,11 @@ public class NodoAtp {
   }
 
   public void setCode (int code) {
-    this.code=code;
+    this.code = code;
   }
 
   public void setScore (int score) {
-    this.score=score;
+    this.score = score;
   }
 
   //public void setFoe (NodoAtp foe) {
@@ -47,11 +47,11 @@ public class NodoAtp {
   //}
 
   public void setDer (NodoAtp der) {
-    this.der=der;
+    this.der = der;
   }
 
   public void setIzq (NodoAtp izq) {
-    this.izq=izq;
+    this.izq = izq;
   }
 
 }
